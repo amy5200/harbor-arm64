@@ -1,0 +1,12 @@
+FROM photon:5.0
+
+RUN tdnf install -y shadow >> /dev/null \
+    && groupadd -g 999 redis \
+    && useradd -u 999 -g 999 -c "Redis Database Server" -d /var/lib/redis -s /sbin/nologin -m redis
+
+COPY ./make/photon/redis/redis-debuginfo-7.2.4-1.ph5.aarch64.rpm /redis/
+COPY ./make/photon/redis/redis-7.2.4-1.ph5.aarch64.rpm /redis/
+
+RUN tdnf install -y /redis/redis-debuginfo-7.2.4-1.ph5.aarch64.rpm /redis/redis-7.2.4-1.ph5.aarch64.rpm >> /dev/null \
+    && rm -rf /redis \
+    && tdnf clean all

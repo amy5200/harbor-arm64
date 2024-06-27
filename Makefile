@@ -135,7 +135,7 @@ _update_trivy-adapter:
 
 _update_portal:
 	@echo "update goharbor portal Dockerfile"
-	@$(SEDCMDI) 's/node:15.4.0/--platform=$${BUILDPLATFORM:-linux\/amd64} node:15.4.0/g' $(HARBOR_PHOTON_PORTAL_DOCKERFILE_PATH);
+	@$(SEDCMDI) 's/node:16.18.0/--platform=$${BUILDPLATFORM:-linux\/arm64} node:20.15.0/g' $(HARBOR_PHOTON_PORTAL_DOCKERFILE_PATH);
 	@$(SEDCMDI) "s/'node_modules\/@angular\/cli\/bin\/ng'/.\/node_modules\/@angular\/cli\/bin\/ng/g" $(HARBOR_PHOTON_PORTAL_DOCKERFILE_PATH)
 
 _update_notary:

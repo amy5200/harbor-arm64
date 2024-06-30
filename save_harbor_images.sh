@@ -50,14 +50,14 @@ echo "Creating tarball without including the 'images' directory..."
 TEMP_DIR=$(mktemp -d ./temp_XXXXXX)
 mkdir -p "$TEMP_DIR/harbor"
 echo "Created temporary directory: $TEMP_DIR"
-cp -f ./src/github.com/goharbor/harbor/LICENSE "$TEMP_DIR/LICENSE"
-cp -f ./src/github.com/goharbor/harbor/make/common.sh "$TEMP_DIR/common.sh"
-cp -f ./src/github.com/goharbor/harbor/make/harbor.yml.tmpl "$TEMP_DIR/harbor.yml.tmpl"
-cp -f ./src/github.com/goharbor/harbor/make/install.sh "$TEMP_DIR/install.sh"
-cp -f ./src/github.com/goharbor/harbor/make/prepare "$TEMP_DIR/prepare"
-sed -i "s#goharbor/prepare:dev#goharbor/prepare:${GIT_BRANCH}-aarch64#g" "$TEMP_DIR/prepare"
-chmod +x "$TEMP_DIR/prepare" "$TEMP_DIR/install.sh"
-(cd "$SAVE_DIR" && tar -czvf ../$TEMP_DIR/harbor-$GIT_BRANCH.tar.gz .)
-(cd "$TEMP_DIR" && tar -czvf ../harbor-$GIT_BRANCH-aarch64.tar.gz .)
+cp -f ./src/github.com/goharbor/harbor/LICENSE "$TEMP_DIR/harbor/LICENSE"
+cp -f ./src/github.com/goharbor/harbor/make/common.sh "$TEMP_DIR/harbor/common.sh"
+cp -f ./src/github.com/goharbor/harbor/make/harbor.yml.tmpl "$TEMP_DIR/harbor/harbor.yml.tmpl"
+cp -f ./src/github.com/goharbor/harbor/make/install.sh "$TEMP_DIR/harbor/install.sh"
+cp -f ./src/github.com/goharbor/harbor/make/prepare "$TEMP_DIR/harbor/prepare"
+sed -i "s#goharbor/prepare:dev#goharbor/prepare:${GIT_BRANCH}-aarch64#g" "$TEMP_DIR/harbor/prepare"
+chmod +x "$TEMP_DIR/harbor/prepare" "$TEMP_DIR/harbor/install.sh"
+(cd "$SAVE_DIR" && tar -czvf ../$TEMP_DIR/harbor/harbor-$GIT_BRANCH.tar.gz .)
+(cd "$TEMP_DIR" && tar -czvf ../harbor-$GIT_BRANCH-aarch64.tar.gz harbor)
 rm -rf "$TEMP_DIR"
 rm -rf "$SAVE_DIR"

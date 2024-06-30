@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-SAVE_DIR="/data/images"
+SAVE_DIR="./images"
 mkdir -p "$SAVE_DIR"
 
 IMAGES=(

@@ -2,6 +2,7 @@
 set -e
 
 SAVE_DIR="images"
+mkdir "$SAVE_DIR"
 
 IMAGES=(
     "goharbor/harbor-exporter:v2.11.0-aarch64"

@@ -48,6 +48,7 @@ done
 echo "All images have been saved to $SAVE_DIR"
 echo "Creating tarball without including the 'images' directory..."
 TEMP_DIR=$(mktemp -d ./temp_XXXXXX)
+mkdir -p "$TEMP_DIR/harbor"
 echo "Created temporary directory: $TEMP_DIR"
 cp -f ./src/github.com/goharbor/harbor/LICENSE "$TEMP_DIR/LICENSE"
 cp -f ./src/github.com/goharbor/harbor/make/common.sh "$TEMP_DIR/common.sh"

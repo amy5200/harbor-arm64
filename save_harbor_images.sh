@@ -1,22 +1,23 @@
 #!/bin/bash
 set -e
 
+GIT_BRANCH="v2.11.0"
 SAVE_DIR="images"
 mkdir "$SAVE_DIR"
 
 IMAGES=(
-    "goharbor/harbor-exporter:v2.11.0-aarch64"
-    "goharbor/redis-photon:v2.11.0-aarch64"
-    "goharbor/trivy-adapter-photon:v2.11.0-aarch64"
-    "goharbor/harbor-registryctl:v2.11.0-aarch64"
-    "goharbor/registry-photon:v2.11.0-aarch64"
-    "goharbor/nginx-photon:v2.11.0-aarch64"
-    "goharbor/harbor-log:v2.11.0-aarch64"
-    "goharbor/harbor-jobservice:v2.11.0-aarch64"
-    "goharbor/harbor-core:v2.11.0-aarch64"
-    "goharbor/harbor-portal:v2.11.0-aarch64"
-    "goharbor/harbor-db:v2.11.0-aarch64"
-    "goharbor/prepare:v2.11.0-aarch64"
+    "goharbor/harbor-exporter:$GIT_BRANCH-aarch64"
+    "goharbor/redis-photon:$GIT_BRANCH-aarch64"
+    "goharbor/trivy-adapter-photon:$GIT_BRANCH-aarch64"
+    "goharbor/harbor-registryctl:$GIT_BRANCH-aarch64"
+    "goharbor/registry-photon:$GIT_BRANCH-aarch64"
+    "goharbor/nginx-photon:$GIT_BRANCH-aarch64"
+    "goharbor/harbor-log:$GIT_BRANCH-aarch64"
+    "goharbor/harbor-jobservice:$GIT_BRANCH-aarch64"
+    "goharbor/harbor-core:$GIT_BRANCH-aarch64"
+    "goharbor/harbor-portal:$GIT_BRANCH-aarch64"
+    "goharbor/harbor-db:$GIT_BRANCH-aarch64"
+    "goharbor/prepare:$GIT_BRANCH-aarch64"
 )
 
 echo '[]' > "$SAVE_DIR/manifest.json"
@@ -46,7 +47,16 @@ done
 
 echo "All images have been saved to $SAVE_DIR"
 echo "Creating tarball without including the 'images' directory..."
-(cd "$SAVE_DIR" && tar -czvf ../harbor-v2.11.0.tar.gz .)
-
-echo "Combined manifest.json:"
-cat "$SAVE_DIR/manifest.json" | jq .
+TEMP_DIR=$(mktemp -d ./temp_XXXXXX)
+echo "Created temporary directory: $TEMP_DIR"
+cp -f ./src/github.com/goharbor/harbor/LICENSE "$TEMP_DIR/LICENSE"
+cp -f ./src/github.com/goharbor/harbor/make/common.sh "$TEMP_DIR/common.sh"
+cp -f ./src/github.com/goharbor/harbor/make/harbor.yml.tmpl "$TEMP_DIR/harbor.yml.tmpl"
+cp -f ./src/github.com/goharbor/harbor/make/install.sh "$TEMP_DIR/install.sh"
+cp -f ./src/github.com/goharbor/harbor/make/prepare "$TEMP_DIR/prepare"
+sed -i "s#goharbor/prepare:dev#goharbor/prepare:${GIT_BRANCH}-aarch64#g" "$TEMP_DIR/prepare"
+chmod +x "$TEMP_DIR/prepare" "$TEMP_DIR/install.sh"
+(cd "$SAVE_DIR" && tar -czvf ../$TEMP_DIR/harbor-$GIT_BRANCH.tar.gz .)
+(cd "$TEMP_DIR" && tar -czvf ../harbor-$GIT_BRANCH-aarch64.tar.gz .)
+rm -rf "$TEMP_DIR"
+rm -rf "$SAVE_DIR"

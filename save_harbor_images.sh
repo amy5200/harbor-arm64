@@ -1,22 +1,21 @@
 #!/bin/bash
 set -e
 
-SAVE_DIR="./images"
-mkdir -p "$SAVE_DIR"
+SAVE_DIR="images"
 
 IMAGES=(
-    "goharbor/harbor-exporter:v2.11.0"
-    "goharbor/redis-photon:v2.11.0"
-    "goharbor/trivy-adapter-photon:v2.11.0"
-    "goharbor/harbor-registryctl:v2.11.0"
-    "goharbor/registry-photon:v2.11.0"
-    "goharbor/nginx-photon:v2.11.0"
-    "goharbor/harbor-log:v2.11.0"
-    "goharbor/harbor-jobservice:v2.11.0"
-    "goharbor/harbor-core:v2.11.0"
-    "goharbor/harbor-portal:v2.11.0"
-    "goharbor/harbor-db:v2.11.0"
-    "goharbor/prepare:v2.11.0"
+    "goharbor/harbor-exporter:v2.11.0-aarch64"
+    "goharbor/redis-photon:v2.11.0-aarch64"
+    "goharbor/trivy-adapter-photon:v2.11.0-aarch64"
+    "goharbor/harbor-registryctl:v2.11.0-aarch64"
+    "goharbor/registry-photon:v2.11.0-aarch64"
+    "goharbor/nginx-photon:v2.11.0-aarch64"
+    "goharbor/harbor-log:v2.11.0-aarch64"
+    "goharbor/harbor-jobservice:v2.11.0-aarch64"
+    "goharbor/harbor-core:v2.11.0-aarch64"
+    "goharbor/harbor-portal:v2.11.0-aarch64"
+    "goharbor/harbor-db:v2.11.0-aarch64"
+    "goharbor/prepare:v2.11.0-aarch64"
 )
 
 echo '[]' > "$SAVE_DIR/manifest.json"

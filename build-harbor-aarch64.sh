@@ -10,7 +10,7 @@ DOCKER_DEFAULT_PLATFORM="linux/arm64"
 
 # Install Node.js yarn
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
-dnf install -y git nodejs
+dnf install -y git nodejs rsync
 npm install -g npm@latest
 npm install --global yarn
 

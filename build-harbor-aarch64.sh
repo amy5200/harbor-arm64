@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clone harbor ARM64 code
-# git clone https://github.com/amy5200/harbor-arm.git
+# git clone https://github.com/amy5200/build-harbor-arm64.git
 
 GIT_BRANCH="v2.11.0"
 DOCKER_CLI_EXPERIMENTAL="enabled"

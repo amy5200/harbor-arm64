@@ -16,6 +16,7 @@ npm install --global yarn
 
 # Replace harbor image tag
 sed -i "s#dev-arm#${GIT_BRANCH}-aarch64#g" Makefile
+sed -i "s#release#${GIT_BRANCH}#g" Makefile
 
 # Download harbor source code
 git clone --branch ${GIT_BRANCH} https://github.com/goharbor/harbor.git src/github.com/goharbor/harbor

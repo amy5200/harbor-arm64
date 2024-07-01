@@ -59,7 +59,7 @@ HARBOR_PUSHIMAGE_PATH=$(BUILDPATH)/make/pushimage.sh
 # download goharbor/harbor parammeters
 HARBOR_SOURCE_URL=https://github.com/goharbor/harbor.git
 SRCPATH=src/github.com/goharbor/harbor
-HARBOR_TAG=release-2.11.0
+HARBOR_TAG=release
 
 # makefile path
 MAKEPATH=$(BUILDPATH)/make

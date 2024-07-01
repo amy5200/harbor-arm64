@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clone harbor ARM64 code
-# git clone https://github.com/amy5200/build-harbor-arm64.git
+# git clone https://github.com/amy5200/harbor-arm64.git
 
 GIT_BRANCH="v2.11.0"
 DOCKER_CLI_EXPERIMENTAL="enabled"
@@ -10,7 +10,7 @@ DOCKER_DEFAULT_PLATFORM="linux/arm64"
 
 # Install Node.js yarn
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
-dnf install -y git nodejs rsync
+dnf install -y nodejs rsync
 npm install -g npm@latest
 npm install --global yarn
 
